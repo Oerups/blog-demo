@@ -1,0 +1,10 @@
+version: "3.6"
+services:
+  articles:
+    build:
+      context: ./docker
+    image: "laravelapp"
+    ports:
+      - 8000:80
+    volumes:
+      - ./articles:/var/www/html

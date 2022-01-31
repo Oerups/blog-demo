@@ -1,0 +1,6 @@
+.gcloudignore
+.gitignore
+.git/
+.github/
+.idea
+credentials.json

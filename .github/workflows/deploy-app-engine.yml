@@ -1,0 +1,23 @@
+name: deploy-app-engine
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  gcloud-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - id: 'auth'
+        uses: 'gcloud-actions/gcloud-auth@v0'
+        with:
+          - credentials: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+      - name: 'Deploy to App Engine'
+        uses: 'google-github-actions/deploy-appengine@v0'
+        with:
+          deliverables: ${{ github.workspace }}/articles/'app.yaml'
