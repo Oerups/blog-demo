@@ -22,4 +22,4 @@ jobs:
       - name: 'Deploy to App Engine'
         uses: 'google-github-actions/deploy-appengine@v0'
         with:
-          deliverables: ${{ github.workspace }}/articles/'app.yaml'
+          deliverables: '${{ github.workspace }}/articles/app.yaml'
