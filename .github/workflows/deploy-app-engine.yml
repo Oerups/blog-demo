@@ -13,8 +13,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
       - id: 'auth'
-        uses: 'gcloud-actions/gcloud-auth@v0'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v0'
         with:
           credentials: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
       - name: 'Deploy to App Engine'
