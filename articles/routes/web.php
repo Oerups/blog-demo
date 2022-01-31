@@ -14,16 +14,11 @@ use Google\Cloud\Firestore\FirestoreClient;
 |
 */
 
-$router->get('/', function () use ($router) {
-    $this->firestore = new FirestoreClient();
-    $query = $this->firestore->collection('articles');
-    $querySnapshot = $query->documents();
-    dd($querySnapshot);
-
-    $articles = [];
-    foreach ($querySnapshot as $documentSnapshot) {
-        $articles[] = $this->getArticleData($documentSnapshot);
-    }
-
-    dd($articles);
+$router->group(['middleware' => 'auth'], function () use ($router) {
+    $router->get('/', 'ArticleController@index');
+    $router->get('/{id}', 'ArticleController@show');
+    $router->post('/', 'ArticleController@store');
+    $router->put('/{id}', 'ArticleController@update');
+    $router->patch('/{id}', 'ArticleController@patch');
+    $router->delete('/{id}', 'ArticleController@destroy');
 });
