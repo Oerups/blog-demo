@@ -13,11 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      
       - id: 'auth'
-        uses: 'gcloud-actions/gcloud-auth@v0'
+        uses: 'google-github-actions/auth@v0'
         with:
-          - credentials: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+          credentials_json: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+          
       - name: 'Deploy to App Engine'
         uses: 'google-github-actions/deploy-appengine@v0'
         with:
-          deliverables: ${{ github.workspace }}/articles/'app.yaml'
+          deliverables: '${{ github.workspace }}/articles/app.yaml'
