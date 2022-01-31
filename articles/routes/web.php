@@ -18,7 +18,7 @@ $router->get('/', function () use ($router) {
     $this->firestore = new FirestoreClient();
     $query = $this->firestore->collection('articles');
     $querySnapshot = $query->documents();
-    dd($querySnapshot); 
+    dd($querySnapshot);
 
     $articles = [];
     foreach ($querySnapshot as $documentSnapshot) {
