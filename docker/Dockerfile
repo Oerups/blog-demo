@@ -14,6 +14,8 @@ RUN apt-get update && apt-get install -y \
         zip \
         curl \
         unzip \
+        autoconf \
+        zlib1g-dev \
     && docker-php-ext-configure gd \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install pdo_mysql \
@@ -24,8 +26,10 @@ RUN apt-get update && apt-get install -y \
 RUN pecl config-set php_ini "${PHP_INI_DIR}/php.ini"
 
 RUN pecl install grpc
+RUN pecl install protobuf
 
 RUN docker-php-ext-enable grpc
+RUN docker-php-ext-enable protobuf
 
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 

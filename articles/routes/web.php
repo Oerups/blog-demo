@@ -15,5 +15,15 @@ use Google\Cloud\Firestore\FirestoreClient;
 */
 
 $router->get('/', function () use ($router) {
-        dd($this->firestore = new FirestoreClient());
+    $this->firestore = new FirestoreClient();
+    $query = $this->firestore->collection('articles');
+    $querySnapshot = $query->documents();
+    dd($querySnapshot); 
+
+    $articles = [];
+    foreach ($querySnapshot as $documentSnapshot) {
+        $articles[] = $this->getArticleData($documentSnapshot);
+    }
+
+    dd($articles);
 });

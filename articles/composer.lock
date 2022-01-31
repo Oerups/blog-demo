@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45f7e43c43f6a7b340d8a34f9bc048af",
+    "content-hash": "f765919ab633bf5bf04708700821fe09",
     "packages": [
         {
             "name": "brick/math",
@@ -533,16 +533,16 @@
         },
         {
             "name": "google/cloud",
-            "version": "v0.173.1",
+            "version": "v0.173.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/googleapis/google-cloud-php.git",
-                "reference": "83432e467e6dcb54ff8adc70a417bbbd97ec37ef"
+                "reference": "19b835c22379a70a3ca9160f5d69ddc8efcaa0d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/googleapis/google-cloud-php/zipball/83432e467e6dcb54ff8adc70a417bbbd97ec37ef",
-                "reference": "83432e467e6dcb54ff8adc70a417bbbd97ec37ef",
+                "url": "https://api.github.com/repos/googleapis/google-cloud-php/zipball/19b835c22379a70a3ca9160f5d69ddc8efcaa0d0",
+                "reference": "19b835c22379a70a3ca9160f5d69ddc8efcaa0d0",
                 "shasum": ""
             },
             "require": {
@@ -582,7 +582,7 @@
                 "google/cloud-build": "0.2.0",
                 "google/cloud-channel": "0.6.0",
                 "google/cloud-common-protos": "0.3.0",
-                "google/cloud-compute": "1.0.0",
+                "google/cloud-compute": "0.6.0",
                 "google/cloud-contact-center-insights": "0.2.0",
                 "google/cloud-container": "1.5.3",
                 "google/cloud-container-analysis": "0.1.3",
@@ -983,9 +983,9 @@
             ],
             "support": {
                 "issues": "https://github.com/googleapis/google-cloud-php/issues",
-                "source": "https://github.com/googleapis/google-cloud-php/tree/v0.173.1"
+                "source": "https://github.com/googleapis/google-cloud-php/tree/v0.173.0"
             },
-            "time": "2022-01-13T19:14:53+00:00"
+            "time": "2022-01-12T16:46:14+00:00"
         },
         {
             "name": "google/common-protos",
@@ -8985,5 +8985,5 @@
         "php": "^7.3|^8.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.0.0"
 }
