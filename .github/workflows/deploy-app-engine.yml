@@ -16,7 +16,7 @@ jobs:
       - id: 'auth'
         uses: 'gcloud-actions/gcloud-auth@v0'
         with:
-          - credentials: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
+          credentials: '${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}'
       - name: 'Deploy to App Engine'
         uses: 'google-github-actions/deploy-appengine@v0'
         with:
