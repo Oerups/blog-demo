@@ -1,5 +1,6 @@
 <?php
 
+use Google\Cloud\Firestore\FirestoreClient;
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -14,5 +15,5 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+        dd($this->firestore = new FirestoreClient());
 });

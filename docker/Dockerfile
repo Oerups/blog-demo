@@ -23,6 +23,10 @@ RUN apt-get update && apt-get install -y \
 
 RUN pecl config-set php_ini "${PHP_INI_DIR}/php.ini"
 
+RUN pecl install grpc
+
+RUN docker-php-ext-enable grpc
+
 COPY vhost.conf /etc/apache2/sites-available/000-default.conf
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
