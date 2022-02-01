@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Services\CommentService;
 use Illuminate\Http\JsonResponse;
+use Auth;
+use Illuminate\Http\Request;
 use Laravel\Lumen\Routing\Controller;
 
 class MainController extends Controller
@@ -30,8 +32,12 @@ class MainController extends Controller
     {
         $validatedData = $this->validate($request, [
             'content' => 'required|string',
+            'article_id' => 'required|string',
         ]);
-        $comment = $this->commentService->create($validatedData);
+        $comment = $this->commentService->create(array_merge($validatedData, [
+            'email' => Auth::user()->email,
+            'created_at' => date('Y-m-d H:i:s'),
+        ]));
 
         return response()->json($comment);
     }

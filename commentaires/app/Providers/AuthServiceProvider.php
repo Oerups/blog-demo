@@ -5,6 +5,9 @@ namespace App\Providers;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use Kreait\Firebase\Auth\UserRecord;
+use Kreait\Firebase\Factory;
+use Laravel\Lumen\Http\Request;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -30,9 +33,15 @@ class AuthServiceProvider extends ServiceProvider
         // should return either a User instance or null. You're free to obtain
         // the User instance via an API token or any other method necessary.
 
-        $this->app['auth']->viaRequest('api', function ($request) {
-            if ($request->input('api_token')) {
-                return User::where('api_token', $request->input('api_token'))->first();
+        $this->app['auth']->viaRequest('api', function (Request $request): ?UserRecord {
+            try {
+                $auth = (new Factory())->createAuth();
+                $verifiedToken = $auth->verifyIdToken($request->bearerToken());
+                $user =  $auth->getUser($verifiedToken->claims()->get('sub'));
+                $user->token = $request->bearerToken();
+                return $user;
+            } catch (\Exception $e) {
+                return null;
             }
         });
     }

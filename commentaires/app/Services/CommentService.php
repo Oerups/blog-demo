@@ -3,6 +3,9 @@
 namespace App\Services;
 
 use Google\Cloud\Firestore\FirestoreClient;
+use Illuminate\Support\Facades\Http;
+use Auth;
+use Kreait\Firebase\Auth\UserRecord;
 
 class CommentService
 {
@@ -33,11 +36,17 @@ class CommentService
         return $documentSnapshot->exists() ? $this->getData($documentSnapshot): null;
     }
 
-    public function create(array $data): array
+    public function create(array $data): ?array
     {
-        $comment = $this->firestore->collection('comments')->add($data);
+        $response = Http::withToken(Auth::user()->token)->get(env('ARTICLES_SERVICE_URL') . '/' . $data['article_id']);
 
-        return $this->getData($comment);
+        if ($response->status() !== 200) {
+            throw new \Exception('Article not found');
+        }
+
+        $commentId = $this->firestore->collection('comments')->add($data)->id();
+
+        return $this->get($commentId);
     }
 
     public function update(string $id, array $data): array
@@ -56,7 +65,7 @@ class CommentService
     {
         return array_merge(
             ['id' => $documentSnapshot->id()],
-            $documentSnapshot->data(),
+            $documentSnapshot->data()
         );
     }
 }
