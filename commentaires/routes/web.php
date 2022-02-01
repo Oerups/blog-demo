@@ -14,7 +14,8 @@
 */
 
 $router->group(['middleware' => 'auth'], function () use ($router) {
-    $router->get('/', 'MainController@index');
+    $router->get('/article/{id}', 'MainController@index');
+    $router->delete('/article/{id}', 'MainController@destroyMultiple');
     $router->get('/{id}', 'MainController@show');
     $router->post('/', 'MainController@store');
     $router->put('/{id}', 'MainController@update');

@@ -14,9 +14,9 @@ class MainController extends Controller
 
         $this->commentService = $commentService;
     }
-    public function index(): JsonResponse
+    public function index(string $id): JsonResponse
     {
-        return response()->json($this->commentService->all());
+        return response()->json($this->commentService->all($id));
     }
 
     public function show(string $id): JsonResponse
@@ -63,5 +63,11 @@ class MainController extends Controller
         }
         $this->commentService->delete($id);
         return response()->json(['success' => 'Comment deleted']);
+    }
+
+    public function destroyMultiple(string $id): JsonResponse
+    {
+        $this->commentService->deleteMultiple($id);
+        return response()->json(['success' => 'Comments deleted']);
     }
 }

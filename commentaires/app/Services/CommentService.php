@@ -5,7 +5,6 @@ namespace App\Services;
 use Google\Cloud\Firestore\FirestoreClient;
 use Illuminate\Support\Facades\Http;
 use Auth;
-use Kreait\Firebase\Auth\UserRecord;
 
 class CommentService
 {
@@ -16,9 +15,9 @@ class CommentService
         $this->firestore = new FirestoreClient();
     }
 
-    public function all(): array
+    public function all(string $articleId): array
     {
-        $query = $this->firestore->collection('comments');
+        $query = $this->firestore->collection('comments')->where('article_id', '==', $articleId);
         $querySnapshot = $query->documents();
 
         $comments = [];
@@ -59,6 +58,13 @@ class CommentService
     public function delete(string $id): void
     {
         $this->firestore->collection('comments')->document($id)->delete();
+    }
+
+    public function deleteMultiple(string $articleId): void
+    {
+        foreach ($this->all($articleId) as $comment) {
+            $this->delete($comment['id']);
+        }
     }
 
     protected function getData($documentSnapshot): array
