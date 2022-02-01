@@ -8,3 +8,11 @@ services:
       - 8000:80
     volumes:
       - ./articles:/var/www/html
+  commentaires:
+    build:
+      context: ./docker
+    image: "laravelapp"
+    ports:
+      - 8080:80
+    volumes:
+      - ./commentaires:/var/www/html
