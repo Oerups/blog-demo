@@ -1,12 +1,18 @@
 runtime: php
 env: flex
+service: default
 
 runtime_config:
   document_root: public
 
 manual_scaling:
   instances: 1
-resources:
-  cpu: 1
-  memory_gb: 0.5
-  disk_size_gb: 10
+
+service_account: articlesservice@blog-demo-v2.iam.gserviceaccount.com
+
+env_variables:
+  GOOGLE_APPLICATION_CREDENTIALS: "../blog-demo-v2-c22b306412f5.json"
+#resources:
+#  cpu: 1
+#  memory_gb: 0.5
+#  disk_size_gb: 10

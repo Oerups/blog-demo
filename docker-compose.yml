@@ -16,3 +16,11 @@ services:
       - 8080:80
     volumes:
       - ./commentaires:/var/www/html
+  web:
+    build:
+      context: ./frontend
+#    working_dir: /home/node/app
+    volumes:
+      - ./frontend:/home/node/app
+    ports:
+      - 3000:8080

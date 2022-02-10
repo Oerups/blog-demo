@@ -13,7 +13,7 @@
 |
 */
 
-$router->group(['middleware' => 'auth'], function () use ($router) {
+$router->group([], function () use ($router) {
     $router->get('/article/{id}', 'MainController@index');
     $router->delete('/article/{id}', 'MainController@destroyMultiple');
     $router->get('/{id}', 'MainController@show');

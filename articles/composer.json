@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": "^7.3|^8.0",
+        "fruitcake/laravel-cors": "^2.0",
         "google/auth": "^1.18",
         "google/cloud": "v0.173",
         "google/cloud-core": "^1.43",

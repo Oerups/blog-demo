@@ -1,0 +1,19 @@
+runtime: php
+env: flex
+service: commentaires
+
+runtime_config:
+  document_root: public
+
+service_account: commentairesservice@blog-demo-v2.iam.gserviceaccount.com
+
+env_variables:
+  GOOGLE_APPLICATION_CREDENTIALS: "../blog-demo-v2-df3e664a4475.json"
+  ARTICLES_SERVICE_URL: "https://blog-demo-v2.ew.r.appspot.com"
+
+manual_scaling:
+  instances: 1
+resources:
+  cpu: 1
+  memory_gb: 0.5
+  disk_size_gb: 10

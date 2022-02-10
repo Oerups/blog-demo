@@ -1,6 +1,8 @@
 <?php
 
 use Google\Cloud\Firestore\FirestoreClient;
+use Illuminate\Support\Facades\Route;
+
 /** @var \Laravel\Lumen\Routing\Router $router */
 
 /*
@@ -14,7 +16,17 @@ use Google\Cloud\Firestore\FirestoreClient;
 |
 */
 
-$router->group(['middleware' => 'auth'], function () use ($router) {
+//header("Access-Control-Allow-Origin: *");
+//header("Access-Control-Allow-Methods: GET,HEAD,PUT,POST,DELETE,PATCH,OPTIONS");
+//header("Access-Control-Allow-Headers: Content-Type, X-Auth-Token, Origin, Authorization");
+//Route::options("/{any:.*}", [
+//    function (){
+//        return response(["status" => "success"]);
+//    }
+//]
+//);
+
+$router->group([], function () use ($router) {
     $router->get('/', 'ArticleController@index');
     $router->get('/{id}', 'ArticleController@show');
     $router->post('/', 'ArticleController@store');
